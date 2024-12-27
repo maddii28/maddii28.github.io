@@ -2,151 +2,147 @@
 <html lang="en">
 
 <head>
-  <title>devfolio</title>
+  <title>Maddhav Suneja</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="css/main.bundle.css">
   <script src="https://kit.fontawesome.com/4e5a72c756.js"></script>
 </head>
+<style>
+  /* Styling the <hr /> */
+  hr {
+    border: 0;
+    border-top: 1px solid #c9c8c8; /* Change this to your desired color */
+    margin: 20px 0;
+    transition: border-color 0.3s ease;
+  }
+
+</style>
 
 <body>
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <div class="navbar-item is-hidden-desktop">
-        <a href="https://github.com/mmacneil" class="icon is-large has-text-light">
+        <a href="https://github.com/maddii28" class="icon is-large has-text-light">
           <i class="fab fa-2x fa-github"></i>
-        </a>
-      </div>
-      <div class="navbar-item is-hidden-desktop">
-        <a href="https://fullstackmark.com" class="icon is-large has-text-light">
-          <i class="fas fa-2x fa-globe"></i>
         </a>
       </div>
     </div>
     <div class="navbar-menu">
       <div class="navbar-end">
         <div class="navbar-item">
-          <a href="https://github.com/mmacneil" class="icon is-large has-text-light">
+          <a href="https://github.com/maddii28" class="icon is-large has-text-light">
             <i class="fab fa-2x fa-github"></i>
-          </a>
-        </div>
-        <div class="navbar-item">
-          <a href="https://fullstackmark.com" class="icon is-large has-text-light">
-            <i class="fas fa-2x fa-globe"></i>
           </a>
         </div>
       </div>
     </div>
   </nav>
 
-  <section class="hero is-primary">
-    <div class="hero-body">
-      <div class="container">
-        <div class="level">
-          <div class="level-item has-text-centered">
-            <figure class="image is-128x128">
-              <img class="is-rounded" src="img/me-big.jpg">
-            </figure>
-          </div>
+<!-- Hero Section -->
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <div class="level">
+        <div class="level-item has-text-centered">
+          <figure class="image is-128x128">
+            <img class="is-rounded" src="img/me-big.jpg" alt="Maddhav Suneja">
+          </figure>
         </div>
-        <div class="columns has-text-centered">
-          <div class="column">
-            <h1 class="title is-1">
-              Mark Macneil
-            </h1>
-            <h2 class="subtitle">
-              FullStack .NET Dev, Halifax, NS
-            </h2>
-            <p>
-              <a href="docs/resume.txt" class="icon has-text-light">
-                <i class="fas fa-file-word"></i> <strong>Resume</strong>
-              </a>
-            </p>
-          </div>
+      </div>
+      <div class="columns has-text-centered">
+        <div class="column">
+          <h1 class="title is-1">
+            Maddhav Suneja
+          </h1>
+          <h2 class="subtitle">
+            <span id="dynamic-text"></span> <!-- Dynamic text here -->
+          </h2>
+          <p>
+            <a href="docs/Maddhav_Resume.pdf" class="icon has-text-light" download>
+              <i class="fas fa-file-pdf"></i> <strong>Resume</strong>
+            </a>
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Your CSS -->
+<style>
+  /* Dynamic text styling */
+  #dynamic-text {
+    color: #ffffff; /* Highlighted text color */
+    font-weight: bold;
+    border-right: 2px solid white; /* Cursor effect */
+    padding-right: 5px;
+    animation: blink 0.7s step-start infinite;
+  }
+
+  /* Cursor blink effect */
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+</style>
+
+<!-- Your JavaScript for dynamic text -->
+<script>
+  // Dynamic text animation
+  const dynamicText = document.getElementById("dynamic-text");
+  const titles = ["Software Engineer", "ML-Enthusiast", "Problem Solver", "Even an Avid Hiker :)"];
+  let currentIndex = 0;
+  let currentText = "";
+  let isDeleting = false;
+  let typingSpeed = 150;
+  let pause = 2000;
+
+  function typeEffect() {
+    // Full text of the current title
+    const fullText = titles[currentIndex];
+
+    // Typing or deleting logic
+    if (isDeleting) {
+        currentText = fullText.substring(0, currentText.length - 1); // Remove a character
+    } else {
+        currentText = fullText.substring(0, currentText.length + 1); // Add a character
+    }
+
+    // Update the text content in the DOM
+    dynamicText.textContent = currentText;
+
+    // Handle typing and deleting state transitions
+    if (!isDeleting && currentText === fullText) {
+        // Full title has been typed; pause, then start deleting
+        setTimeout(() => {
+            isDeleting = true;
+            typeEffect();
+        }, pause);
+        return;
+    } else if (isDeleting && currentText === "") {
+        // Finished deleting; move to the next title
+        isDeleting = false;
+        currentIndex = (currentIndex + 1) % titles.length; // Strictly increment in linear order
+    }
+
+    // Adjust speed for typing and deleting
+    const delay = isDeleting ? typingSpeed / 2 : typingSpeed;
+    setTimeout(typeEffect, delay);
+}
+
+// Start the typing effect
+typeEffect();
+</script>
 
   <section class="section">
     <div class="container">
       <h1 class="title">About Me</h1>
       <hr />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.</p>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">Experience</h1>
-      <hr />
-      <div class="card">
-        <div class="card-content">
-          <div class="media">
-            <div class="media-left">
-              <figure class="image is-48x48">
-                <img src="img/dunder-mifflin-logo.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="media-content">
-              <p class="title is-4">Company Name</p>
-              <p class="subtitle is-6">Title - <time datetime="2018-1">January 2018</time> - <time
-                  datetime="2019-9">Sepemter 2019</time> </p>
-            </div>
-          </div>
-          <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
-            <ul>
-              <li>Noteworthy achievment here.</li>
-              <li>Noteworthy achievment here.</li>
-              <li>Noteworthy achievment here.</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">c#</span>
-              <span class="tag">xamarin</span>
-              <span class="tag">asp.net core</span>
-              <span class="tag">.net core</span>
-              <span class="tag">azure</span>
-              <span class="tag">devops</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card card-gap">
-        <div class="card-content">
-          <div class="media">
-            <div class="media-left">
-              <figure class="image is-48x48">
-                <img src="img/pied-piper-logo.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="media-content">
-              <p class="title is-4">Company Name</p>
-              <p class="subtitle is-6">Title - <time datetime="2018-1">August 2017</time> - <time
-                  datetime="2017-9">January 2018</time></p>
-            </div>
-          </div>
-          <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
-            <ul>
-              <li>Noteworthy achievment here.</li>
-              <li>Noteworthy achievment here.</li>
-              <li>Noteworthy achievment here.</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">c#</span>
-              <span class="tag">xamarin</span>
-              <span class="tag">asp.net core</span>
-              <span class="tag">.net core</span>
-              <span class="tag">azure</span>
-              <span class="tag">devops</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <p>Hi, I'm Maddhav Suneja, a Computer Science major at New York University, with minors in Mathematics and Quantum Technology. I'm passionate about developing creative solutions to real-world challenges through technology.
+        My work includes projects like Finlitify, a financial literacy platform that earned the Best WolframAlpha Hack Award at HackNYU 2023, and Lockabox, a smart lockbox incorporating text-recognition technology to balance focus and accessibility. Currently, I'm building QRaven, which leverages Flask and machine learning to generate dynamic QR codes with advanced analytics. 
+        I'm continuously honing my skills in machine learning, AI, and backend development, striving to create impactful, user-centered applications.</p>
     </div>
   </section>
 
@@ -154,60 +150,52 @@
     <div class="container">
       <h1 class="title">Projects</h1>
       <hr />
+      <style>
+        /* Embedded CSS for hover effect */
+        .tile.is-parent .notification {
+          border-radius: 10px; /* Smooth corners */
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+          transition: all 0.3s ease; /* Smooth hover effect */
+          background-color: hsla(0, 5%, 92%, 0.75); /* White background for contrast */
+          padding: 15px;
+        }
+  
+        .tile.is-parent:hover .notification {
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+          transform: translateY(-5px); /* Lift effect */
+          background-color: hsla(0, 3%, 88%, 0.9); /* Slightly lighter background */
+        }
+  
+        .tile.is-parent .notification img {
+          border-radius: 10px; /* Match the box corners */
+          width: 100%;
+          height: auto;
+        }
+      </style>
       <div class="tile is-ancestor">
         <div class="tile is-vertical is-12">
           <div class="tile">
             <div class="tile is-parent">
               <article class="tile is-child notification">
-                <p class="title">Project title</p>
+                <p class="title">Finlitify</p>
                 <figure class="image is-3by2">
-                  <img class="modal-trigger" data-target="project-1-modal" src="img/project-1-cover.png">
+                  <img class="modal-trigger" data-target="project-1-modal" src="img/project-1-cover.png" alt="Finlitify">
                 </figure>
               </article>
             </div>
             <div class="tile is-parent">
               <article class="tile is-child notification">
-                <p class="title">Project title</p>
+                <p class="title">Lockabox</p>
                 <figure class="image is-4by3">
-                  <img class="modal-trigger" data-target="project-2-modal" src="img/project-2-cover.png">
+                  <img class="modal-trigger" data-target="project-2-modal" src="img/project-2-cover.png" alt="Lockabox">
                 </figure>
               </article>
             </div>
             <div class="tile is-parent">
               <article class="tile is-child notification">
-                <p class="title">Project title</p>
+                <p class="title">QRaven</p>
                 <figure class="image is-4by3">
-                  <img class="modal-trigger" data-target="project-3-modal" src="img/project-3-cover.png">
-                </figure>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tile is-ancestor">
-        <div class="tile is-vertical is-12">
-          <div class="tile">
-            <div class="tile is-parent">
-              <article class="tile is-child notification">
-                <p class="title">Project title</p>
-                <figure class="image is-4by3">
-                  <img class="modal-trigger" data-target="project-4-modal" src="img/project-4-cover.png">
-                </figure>
-              </article>
-            </div>
-            <div class="tile is-parent">
-              <article class="tile is-child notification">
-                <p class="title">Project title</p>
-                <figure class="image is-4by3">
-                  <img class="modal-trigger" data-target="project-5-modal" src="img/project-5-cover.png">
-                </figure>
-              </article>
-            </div>
-            <div class="tile is-parent">
-              <article class="tile is-child notification">
-                <p class="title">Project title</p>
-                <figure class="image is-4by3">
-                  <img class="modal-trigger" data-target="project-6-modal" src="img/project-6-cover.png">
+                  <img class="modal-trigger" data-target="project-3-modal" src="img/project-3-cover.png" alt="QRaven">
                 </figure>
               </article>
             </div>
@@ -216,6 +204,86 @@
       </div>
     </div>
   </section>
+  
+<!-- Skills Section -->
+<section class="section">
+  <div class="container">
+    <h2 class = "title">Skills & Technologies</h2>
+    <hr />
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px;">
+
+      <!-- Skill 1: Python -->
+      <div class="skill-logo" style="text-align: center; flex: 1 1 150px; max-width: 180px; padding: 20px; background-color: hsla(0, 3%, 92%, 0.75); border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/python.svg" alt="Python" style="width: 60px; height: 60px; margin-bottom: 10px;">
+        <p style="color: #333; font-weight: 600; font-size: 1.1rem;">Python</p>
+      </div>
+
+      <!-- Skill 2: Flask -->
+      <div class="skill-logo" style="text-align: center; flex: 1 1 150px; max-width: 180px; padding: 20px; background-color: hsla(0, 3%, 92%, 0.75); border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/flask.svg" alt="Flask" style="width: 60px; height: 60px; margin-bottom: 10px;">
+        <p style="color: #333; font-weight: 600; font-size: 1.1rem;">Flask</p>
+      </div>
+
+      <!-- Skill 3: SQL -->
+      <div class="skill-logo" style="text-align: center; flex: 1 1 150px; max-width: 180px; padding: 20px; background-color: hsla(0, 3%, 92%, 0.75); border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/mysql.svg" alt="SQL" style="width: 60px; height: 60px; margin-bottom: 10px;">
+        <p style="color: #333; font-weight: 600; font-size: 1.1rem;">SQL</p>
+      </div>
+
+      <!-- Skill 4: HTML -->
+      <div class="skill-logo" style="text-align: center; flex: 1 1 150px; max-width: 180px; padding: 20px; background-color: hsla(0, 3%, 92%, 0.75); border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/html5.svg" alt="HTML" style="width: 60px; height: 60px; margin-bottom: 10px;">
+        <p style="color: #333; font-weight: 600; font-size: 1.1rem;">HTML</p>
+      </div>
+
+      <!-- Skill 5: CSS -->
+      <div class="skill-logo" style="text-align: center; flex: 1 1 150px; max-width: 180px; padding: 20px; background-color: hsla(0, 3%, 92%, 0.75); border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/css3.svg" alt="CSS" style="width: 60px; height: 60px; margin-bottom: 10px;">
+        <p style="color: #333; font-weight: 600; font-size: 1.1rem;">CSS</p>
+      </div>
+
+      <!-- Skill 6: Git -->
+      <div class="skill-logo" style="text-align: center; flex: 1 1 150px; max-width: 180px; padding: 20px; background-color: hsla(0, 3%, 92%, 0.75); border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/git.svg" alt="Git" style="width: 60px; height: 60px; margin-bottom: 10px;">
+        <p style="color: #333; font-weight: 600; font-size: 1.1rem;">Git</p>
+      </div>
+
+      <!-- Skill 7: C++ -->
+      <div class="skill-logo" style="text-align: center; flex: 1 1 150px; max-width: 180px; padding: 20px; background-color: hsla(0, 3%, 92%, 0.75); border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/cplusplus.svg" alt="C++" style="width: 60px; height: 60px; margin-bottom: 10px;">
+        <p style="color: #333; font-weight: 600; font-size: 1.1rem;">C++</p>
+      </div>
+
+      <!-- Skill 8: NumPy -->
+      <div class="skill-logo" style="text-align: center; flex: 1 1 150px; max-width: 180px; padding: 20px; background-color: hsla(0, 3%, 92%, 0.75); border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/numpy.svg" alt="NumPy" style="width: 60px; height: 60px; margin-bottom: 10px;">
+        <p style="color: #333; font-weight: 600; font-size: 1.1rem;">NumPy</p>
+      </div>
+
+      <!-- Skill 9: Pandas -->
+      <div class="skill-logo" style="text-align: center; flex: 1 1 150px; max-width: 180px; padding: 20px; background-color: hsla(0, 3%, 92%, 0.75); border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/pandas.svg" alt="Pandas" style="width: 60px; height: 60px; margin-bottom: 10px;">
+        <p style="color: #333; font-weight: 600; font-size: 1.1rem;">Pandas</p>
+      </div>
+
+      <!-- Skill 10: R -->
+      <div class="skill-logo" style="text-align: center; flex: 1 1 150px; max-width: 180px; padding: 20px; background-color: hsla(0, 3%, 92%, 0.75); border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/r.svg" alt="R" style="width: 60px; height: 60px; margin-bottom: 10px;">
+        <p style="color: #333; font-weight: 600; font-size: 1.1rem;">R</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Hover Effect Style -->
+<style>
+  .skill-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Adds a larger shadow on hover */
+  }
+</style>
+
 
   <section class="section">
     <div class="container">
@@ -265,34 +333,26 @@
       <nav class="level">
         <div class="level-item has-text-centered">
           <div>
-            <a href="https://github.com/mmacneil" class="icon is-large">
+            <a href="https://github.com/maddii28" class="icon is-large">
               <i class="fab fa-2x fa-github"></i>
             </a>
-            <p class="heading"><a href="https://github.com/mmacneil">github.com/mmacneil</a></p>
+            <p class="heading"><a href="https://github.com/maddii28">github.com/maddii28</a></p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
-            <a href="https://fullstackmark.com" class="icon is-large">
-              <i class="fas fa-2x fa-globe"></i>
-            </a>
-            <p class="heading"><a href="https://fullstackmark.com">fullstackmark.com</a></p>
-          </div>
-        </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <a href="mailto:markmacneil@gmail.com" class="icon is-large">
+            <a href="mailto:ms14565@nyu.edu" class="icon is-large">
               <i class="fas fa-2x fa-envelope"></i>
             </a>
-            <p class="heading"><a href="mailto:markmacneil@gmail.com">markmacneil@gmail.com</a></p>
+            <p class="heading"><a href="mailto:ms14565@nyu.edu">ms14565@nyu.edu</a></p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
-            <a href="https://www.linkedin.com/in/markmacneilhfx" class="icon is-large">
+            <a href="https://www.linkedin.com/in/maddhav-suneja" class="icon is-large">
               <i class="fab fa-2x fa-linkedin-in"></i>
             </a>
-            <p class="heading"><a href="https://www.linkedin.com/in/markmacneilhfx">linkedin</a></p>
+            <p class="heading"><a href="https://www.linkedin.com/in/maddhav-suneja">linkedin</a></p>
           </div>
         </div>
       </nav>
@@ -304,7 +364,8 @@
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Project title</p>
+        <p class="title">Finlitify</p>
+        <p></p> 
         <button class="delete" aria-label="close"></button>
       </header>
       <section class="modal-card-body">
@@ -330,18 +391,15 @@
             consequat.</p>
 
           <div class="tags">
-            <span class="tag">angular</span>
-            <span class="tag">mongo</span>
-            <span class="tag">typscript</span>
-            <span class="tag">node</span>
+            <span class="tag">Python</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">React</span>
           </div>
 
         </div>
 
       </section>
-      <footer class="modal-card-foot">
-        <button class="button is-success">Close</button>
-      </footer>
+
     </div>
   </div>
 
@@ -349,7 +407,7 @@
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Project title</p>
+        <p class="modal-card-title">Lockabox</p>
         <button class="delete" aria-label="close"></button>
       </header>
       <section class="modal-card-body">
@@ -384,9 +442,6 @@
         </div>
 
       </section>
-      <footer class="modal-card-foot">
-        <button class="button is-success">Close</button>
-      </footer>
     </div>
   </div>
 
@@ -394,7 +449,7 @@
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Project title</p>
+        <p class="modal-card-title">QRaven</p>
         <button class="delete" aria-label="close"></button>
       </header>
       <section class="modal-card-body">
@@ -425,140 +480,14 @@
         </div>
 
       </section>
-      <footer class="modal-card-foot">
-        <button class="button is-success">Close</button>
-      </footer>
-    </div>
-  </div>
-
-  <div id="project-4-modal" class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Project title</p>
-        <button class="delete" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <div id="project-4-modal-carousel" class="carousel">
-          <figure class="image is-4by3 carousel-cell">
-            <img src="img/carousel/1.png">
-          </figure>
-          <figure class="image is-4by3 carousel-cell">
-            <img src="img/carousel/2.png">
-          </figure>
-          <figure class="image is-4by3 carousel-cell">
-            <img src="img/carousel/3.png">
-          </figure>
-        </div>
-
-        <div class="content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo
-            consequat.</p>
-          <div class="tags">
-            <span class="tag">angular</span>
-            <span class="tag">mongo</span>
-            <span class="tag">typscript</span>
-            <span class="tag">node</span>
-          </div>
-        </div>
-
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button is-success">Close</button>
-      </footer>
-    </div>
-  </div>
-
-  <div id="project-5-modal" class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Project title</p>
-        <button class="delete" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <div id="project-5-modal-carousel" class="carousel">
-          <figure class="image is-4by3 carousel-cell">
-            <img src="img/carousel/1.png">
-          </figure>
-          <figure class="image is-4by3 carousel-cell">
-            <img src="img/carousel/2.png">
-          </figure>
-          <figure class="image is-4by3 carousel-cell">
-            <img src="img/carousel/3.png">
-          </figure>
-        </div>
-
-        <div class="content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo
-            consequat.</p>
-          <div class="tags">
-            <span class="tag">angular</span>
-            <span class="tag">mongo</span>
-            <span class="tag">typscript</span>
-            <span class="tag">node</span>
-          </div>
-        </div>
-
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button is-success">Close</button>
-      </footer>
-    </div>
-  </div>
-
-  <div id="project-6-modal" class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Project title</p>
-        <button class="delete" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <div id="project-6-modal-carousel" class="carousel">
-          <figure class="image is-4by3 carousel-cell">
-            <img src="img/carousel/1.png">
-          </figure>
-          <figure class="image is-4by3 carousel-cell">
-            <img src="img/carousel/2.png">
-          </figure>
-          <figure class="image is-4by3 carousel-cell">
-            <img src="img/carousel/3.png">
-          </figure>
-        </div>
-
-        <div class="content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo
-            consequat.</p>
-          <div class="tags">
-            <span class="tag">angular</span>
-            <span class="tag">mongo</span>
-            <span class="tag">typscript</span>
-            <span class="tag">node</span>
-          </div>
-        </div>
-
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button is-success">Close</button>
-      </footer>
     </div>
   </div>
 
   <footer class="footer">
     <div class="content has-text-centered">
       <p>
-        <a href="https://github.com/mmacneil/devfolio" target="_blank" class="icon has-text-primary">
-          <i class="fab fa-github"></i> <strong>devfolio</strong></a>
+        <a>
+          <strong>© 2024 Maddhav Suneja. All rights reserved.</strong></a>
       </p>
     </div>
   </footer>
